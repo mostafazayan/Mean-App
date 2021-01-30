@@ -3,4 +3,7 @@ export interface Post {
   title: string;
   description: string;
   post: string;
+  image: File;
+  postsPerPage?: any;
+  currentPage?: any;
 }

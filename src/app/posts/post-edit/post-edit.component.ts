@@ -36,7 +36,6 @@ export class PostEditComponent implements OnInit {
       .subscribe((response: Post) => {
         console.log('edited successfully!!!');
         console.log(response);
-
         this.editDialog.closeAll();
       });
   }

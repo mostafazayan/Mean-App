@@ -19,6 +19,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import { PostEditComponent } from './posts/post-edit/post-edit.component';
     HeaderComponent,
     PostListComponent,
     PostEditComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +49,7 @@ import { PostEditComponent } from './posts/post-edit/post-edit.component';
     MatProgressBarModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

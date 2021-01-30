@@ -1,65 +1,68 @@
-<mat-card>
-  <form [formGroup]="formAddPost">
-    <mat-form-field>
-      <input
-        matInput
-        type="text"
-        placeholder="Type Title"
-        formControlName="title"
-        required
-      />
-      <mat-error>Please enter a post title</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input
-        matInput
-        type="text"
-        placeholder="Type Description"
-        formControlName="description"
-        required
-      />
-      <mat-error>Please enter a post description</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <textarea
-        matInput
-        placeholder="Type Your Post"
-        name=""
-        id=""
-        cols="30"
-        rows="6"
-        formControlName="post"
-        required
-        maxlength="10"
-        minlength="3"
-      ></textarea>
-      <mat-error>Please enter a post</mat-error>
-    </mat-form-field>
-
-    <div>
-      <button
-        type="file"
-        class="main-image"
-        mat-raised-button
-        (click)="file.click()"
-      >
-        <img [src]="imageUrl" alt="" />
+<div class="container">
+  <mat-card>
+    <form [formGroup]="formAddPost">
+      <mat-form-field>
         <input
-          hidden
-          type="file"
-          formControlName="image"
-          #file
-          (change)="readImage($event.target.files)"
+          matInput
+          type="text"
+          placeholder="Type Title"
+          formControlName="title"
+          required
         />
+        <mat-error>Please enter a post title</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Type Description"
+          formControlName="description"
+          required
+        />
+        <mat-error>Please enter a post description</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea
+          matInput
+          placeholder="Type Your Post"
+          name=""
+          id=""
+          cols="30"
+          rows="6"
+          formControlName="post"
+          required
+          maxlength="10"
+          minlength="3"
+        ></textarea>
+        <mat-error>Please enter a post</mat-error>
+      </mat-form-field>
+
+      <div>
+        <button
+          type="file"
+          class="main-image"
+          mat-raised-button
+          (click)="file.click()"
+        >
+          <img [src]="imageUrl" alt="" />
+          <input
+            hidden
+            type="file"
+            formControlName="image"
+            #file
+            (change)="readImage($event.target.files)"
+          />
+        </button>
+      </div>
+      <button
+        [disabled]="formAddPost.invalid"
+        color="primary"
+        mat-raised-button
+        (click)="onAddPost()"
+      >
+        Save post
       </button>
-    </div>
-    <button
-      [disabled]="formAddPost.invalid"
-      color="primary"
-      mat-raised-button
-      (click)="onAddPost()"
-    >
-      Save post
-    </button>
-  </form>
-</mat-card>
+    </form>
+  </mat-card>
+  <app-post-list></app-post-list>
+</div>

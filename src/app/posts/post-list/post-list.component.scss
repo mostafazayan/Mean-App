@@ -1,12 +1,17 @@
-:host{
-    margin-top: 1rem;
-    display: block;
-}
-.info-text{
-    text-align: center;
+:host {
+  margin-top: 1rem;
+  display: block;
 }
 
-.delete{
-    background-color: red;
-    color: white;
+.info-text {
+  text-align: center;
+}
+
+.delete {
+  background-color: red;
+  color: white;
+}
+
+mat-paginator {
+  box-shadow: 0 0 8px lightgrey;
 }

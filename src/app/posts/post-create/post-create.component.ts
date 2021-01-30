@@ -1,7 +1,16 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  NgForm,
+  NG_ASYNC_VALIDATORS,
+  Validators,
+} from '@angular/forms';
 import { Post } from '../models/post.model';
+import { PostListComponent } from '../post-list/post-list.component';
 import { PostsService } from '../services/posts.service';
+import { mimeType } from './7.1 mime-type.validator';
 
 @Component({
   selector: 'app-post-create',
@@ -15,7 +24,7 @@ export class PostCreateComponent implements OnInit {
   enteredPost = '';
   formAddPost!: FormGroup;
   selectedImage = '';
-  fileToUpload!: File;
+  fileToUpload!: File | null;
   // @Output() postCreated = new EventEmitter<Post>();
 
   constructor(
@@ -27,11 +36,14 @@ export class PostCreateComponent implements OnInit {
     this.addForm();
   }
   addForm(): void {
-    this.formAddPost = this.formBuilder.group({
-      title: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      post: ['', [Validators.required]],
-      image: ['', [Validators.required]],
+    this.formAddPost = new FormGroup({
+      title: new FormControl(null, { validators: [Validators.required] }),
+      description: new FormControl(null, { validators: [Validators.required] }),
+      post: new FormControl(null, { validators: [Validators.required] }),
+      image: new FormControl(null, {
+        validators: [Validators.required],
+        asyncValidators: [mimeType],
+      }),
     });
   }
 

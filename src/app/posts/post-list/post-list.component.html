@@ -1,6 +1,6 @@
 <!-- <mat-spinner ></mat-spinner> -->
 <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
-<mat-accordion *ngIf="posts$ | async as posts">
+<mat-accordion>
   <mat-expansion-panel *ngFor="let post of posts">
     <mat-expansion-panel-header>
       <mat-panel-title> {{ post.title }} </mat-panel-title>
@@ -19,6 +19,14 @@
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
+<mat-paginator
+  [length]="totalPosts"
+  [pageSize]="postsPerPage"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="onChangePage($event)"
+  *ngIf="posts.length > 0"
+>
+</mat-paginator>
 <p *ngIf="posts.length <= 0 && !isLoading" class="mat-body-1 info-text">
   No Posts Added Yet
 </p>

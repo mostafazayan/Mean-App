@@ -1,18 +1,28 @@
-mat-card{
+.container {
+  width: 80%;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  mat-card {
     margin: auto;
-    mat-form-field{
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    .main-image {
+      width: 150px;
+      height: 150px;
+      padding: 0;
+      margin-top: 15px;
+      margin-bottom: 15px;
+
+      img {
         width: 100%;
+        height: 100%;
+        border-radius: 4px;
+      }
     }
-    .main-image{
-        width: 150px;
-        height: 150px;
-        padding: 0;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        img{
-            width: 100%;
-            height: 100%;
-            border-radius: 4px;
-        }
-    }
+  }
 }

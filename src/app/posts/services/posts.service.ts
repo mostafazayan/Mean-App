@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Post } from '../models/post.model';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +19,26 @@ export class PostsService {
 
   posts$ = this.http.get<Post[]>(`${environment.baseUrl}posts`);
 
+  getAllPosts(postsPerPage: number, currentPage: number): Observable<Post[]> {
+    const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
+    return this.http
+      .get<Post[]>(`${environment.baseUrl}posts${queryParams}`)
+      .pipe(
+        tap(() => {
+          this.refreshNeeded$.next();
+        })
+      );
+  }
+
   addPost(post: Post): Observable<Post> {
-    return this.http.post<Post>(`${environment.baseUrl}posts`, post).pipe(
+    const postData = new FormData();
+
+    postData.append('title', post.title);
+    postData.append('description', post.description);
+    postData.append('post', post.post);
+    postData.append('image', post.image);
+
+    return this.http.post<Post>(`${environment.baseUrl}posts`, postData).pipe(
       tap(() => {
         this.refreshNeeded$.next();
       })
